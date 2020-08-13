@@ -1,0 +1,409 @@
+CS50
+Add an existing project to GitHub using Command line: https://www.softwarelab.it/2018/10/12/adding-an-existing-project-to-github-using-the-command-line/
+
+
+https://www.softwarelab.it/2018/10/12/adding-an-existing-project-to-github-using-the-command-line/
+
+14/06/2020
+GIT
+git clone <url> #clone a repository through its URL
+cd #change directory
+git add <filename> #put files in a stash/holding area for an upcoming commit
+git commit -m "message" #save a snapshot of the files of the repository
+git status #check the status of the commit
+git push #push the changes to the repositry in github 
+git pull #download an updated repository
+git log #show all previous commits 
+git reset --hard <commit hash> #resets to a previous commit point ON YOUR COMPUTER - not github
+
+
+HTML FRONTEND (TAGS)
+<!DOCTYPE html> #HTML version indicator
+<html> # end it with </html> along with all other tags
+<head>
+<h1> #this is a tag with the largest font, goes from <h1> to <h6>.
+<ul> #unordered list - list items are not numbered
+<ol> #ordered list - list items are numbered
+<li> #list item to be inserted in a <ul>
+
+<p> #paragraph
+<body>
+<img src="cat.jpg" height="200" width="200> #make sure cat.jpg is in the source folder, src, width, height are attributes
+
+<table>
+<tr> #table row
+<th> #table headers
+<td> #table data
+
+<form>
+<input type="text" placeholder = "Full Name" name="name">
+
+<button> SUBMIT! <button/>
+
+<style> #define CSS tags and parameters in a HTML file
+
+CSS - CASCADING STYLER STREAMS (MAKES HTML LOOK NICER)
+<div id="top"> #a section of the page, id gives a name to the division
+<span class="name"> #a sub section of a line of text? this can be divided from the rest of the division and styled separately, class lets you style everything that is in the class at the same time
+<margin> #margin of division from the web browser
+<pad> #padding between content and the a division
+font:
+border: 1 px solid black
+border collapse:collapse #collapse borders
+
+can save all styling in a separate file e.g.:styles.CSS to be referenced by a HTML file
+
+a github repository that contains HTML files can be deployed to the internet with GitHub Pages
+
+15/06/2020
+GIT BRANCHING - develop things separately, eventually merge branches again
+
+git branch #lists all branches available
+git branch xxxx #creates a new branch xxxx, xxxx is like a new repository that is somehow related to the master branch
+git merge xxxx # merge branch xxxx with the master branch
+Remote #a version of the repository that exists externally
+git check out xxxx # switch into a specific branch
+Fork #create identical repository, eventually merges back with the real repository through a pull request
+
+CONNECTING WEBSITES - webpage linking
+<a href="xxxx.html"> CLICK HERE </a> #this tag is inserted in the body can link to 1) a file 2) a website 3) a location within the same webpage
+<a href="https://google.com">
+<a href="#section1"> #the '#' sign lets the code know that the characters following it is an ID within the code 
+
+<datalist> #in a user input, refer to a list and recommend what the input is filled with
+
+16/06/2020
+CSS
+
+DESCENDANTS
+ol li { color:red #ORDERED LIST -> LIST ITEMS = COLOR ALL LIST ITEMS  UNDER ORDERED LISTS RED
+ol > li { color:red #ORDERED LIST -IMMEDIATE DESCENDANTS-> LIST ITEMS = COLOR ALL LIST ITEMS THAT ARE IMMEDIATE UNDER A OL RED
+
+button:hover # hover makes something happen when your mouse hovers over it
+
+a:: before #do something before all 'a' tags
+a:: after #do something after all 'a' tags 
+
+MOBILE RESPONSIVITTY
+Viewport = Area of the screen you are viewing a website from
+
+MEDIA QUERIES = Assign CSS elements based on the medium it is being viewed on
+@media print #only applies the CSS elements when the medium is print
+
+@media (min-width: 500px) - Assign CSS elements based on how wide or narrow a medium is
+
+flexbox = a matrix of boxes that are arranged according to how wide the screen is
+grid = fixed columns and rows that scale to fix in the screen
+bootstrap = base CSS code that helps you to design your site according to a 'modern' and 12-column style, it has its own classes that can be referred to
+check bookstrat documentation if interested. you can manipulate bootstrap classes by referring to them in your CSS code
+
+Sass #an extension to css, filetype is scss.
+variables in Sass start with a '$'
+you will need to compile the scss file into a css file
+you can make Sass watch a specific scss file and compile it as a css file
+
+20/06/2020
+
+FLASK - Python' Web Developer
+
+if running for the first time, tell Flask where to look with: export FLASK_APP = application.py
+first: from flask import Flask
+
+app = Flask(__name__) #define the web application name, a Flask Variable called app 
+@app.route("/") #the default route of a site
+def index():
+	return "Hello World!"
+
+@app.route("/<string:name>") #the /name becomes an input for the app
+
+HTML files can be tied into Flask:
+
+from flask import Flask, render_template # FLASK ONLY LOOKS INTO A FOLDER IMMEDIATELY IN THE SAME FOLDER AS THE .PY FILE, THE FOLDER MUST BE CALLED templates
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+	return render_template("index.html")
+
+in html files you can use {{variable}} so that the python file can be used to define the variable within the html file
+jinja is used to process the template (html) that contains special python-variable, python-loops and python-condition related to the python file containing the template
+
+{% xxx %} does loops and conditions, needs to be phrased in a very specific way
+
+template inheritance - clone template from a template and insert content based on pre-defined blocks, lets you change all the templates that inherited from the parent at the same time
+
+flask can auto-reload in debug mode 
+jinja comes together with flask
+
+from flask import Flask, render_template, request # request is used to deal with collecting data from forms
+
+sessions - a user logs into a session and data is shown or recorded based on the session, it is how data is stored from online forms, DATA IS STORED PER SERVER SESSION, when the server restarts all the data stored is lost
+sessions - sessions can be shared or personal
+
+
+23/06/2020
+SQL Structured Query Language - For interacting with Databases and Data Storage
+Serial Data Type - an integer that keeps count
+VarChar - variable length of characters
+
+TABLE CREATION
+Create Table, Input Column Name and Data Type in the column, INSERT INTO
+! specifying NOT NULL as an extension to the data type forces the entry to be filled before it can be submitted
+! other constraints include UNIQUE, PRIMARY KEY (the way to reference the data in the table), DEFAULT (insert default values), CHECK (operators to check data)
+
+Inserting Data
+(col1, col2, col3) VALUES (1,2,3)
+
+SHOWING DATA
+SELECT * FROM table;
+
+SELECTIVE DATA
+SELECT * FROM table WHERE id = 3;
+SELECT(*) COUNT  FROM table WHERE cheese = 'Yes'
+SELECT * FROM table WHERE origin LIKE '%a%'; #select things that contain substring 'a'
+SELECT origin, COUNT(*) FROM flights GROUP BY origin HAVING COUNT(*) > 1; #how many flights from each origin are there where flights are >1?
+
+UPDATE DATA
+UPDATE data
+SET duration = 430 WHERE origin ='New York' AND destination ='London';
+
+DELETE DATA
+DELETE FROM flights WHERE destination = 'TOKYO';
+! database IDs are unique, even if you delete a row, that id will never be used again
+
+LIMIT QUERY OUTPUTS
+Receive a limited amount of data
+
+ORDERING DATA
+SELECT * FROM flights ORDER BY duration ASC; #order in ascending by duration
+
+FLASK runs SQL commands as well
+
+PRIMARY KEY - the value used to reference an entry in a table
+
+CREATING FOREIGN KEYS
+Referencing data between datas
+SELECT origin, destination, name FROM flights JOIN passengers ON passengers.flight_id = flights.id #merge on passnger.flights_id and flights.id
+REFERENCE
+
+INNER JOIN - only show matches, LEFT JOIN - keep all left table entries and match, RIGHT JOIN - keep all right values and match 
+
+NESTED QUERIES
+
+SQL TRANSACTIONS (BEGIN AND COMMIT - for race conditions)
+
+SQLAlchemy - linked Python and SQL, run SQL commands in Python
+fetchall returns a list 
+
+SQL lets you create tables with db.create_all() from a class 
+
+
+Please note that these credentials are not permanent.
+
+Heroku rotates credentials periodically and updates applications where this database is attached.
+
+DATABASE DETAILS
+Host
+ec2-35-172-73-125.compute-1.amazonaws.com
+Database
+d6bt7imri7f5k9
+User
+bbilcrjmdqsefb
+Port
+5432
+Password
+1792ea62a0f1684cafa24359decd4d31df2ac7f7a2bcf4bf9f86aad8254f5f2f
+URI
+postgres://bbilcrjmdqsefb:1792ea62a0f1684cafa24359decd4d31df2ac7f7a2bcf4bf9f86aad8254f5f2f@ec2-35-172-73-125.compute-1.amazonaws.com:5432/d6bt7imri7f5k9
+Heroku CLI
+heroku pg:psql postgresql-silhouetted-61094 --app tr-planning
+
+
+PROJECT 1:
+HEROKU DATABASE CRED: https://data.heroku.com/datastores/632b2a7b-3f31-4168-b672-8ab16c125109#administration
+REDIRECTING A URL AFTER -SOMETHING-: https://stackoverflow.com/questions/14343812/redirecting-to-url-in-flask
+FLASK QUICKSTART DOCUMENTATION: https://flask.palletsprojects.com/en/1.1.x/quickstart/
+SETTING UP THE DATABASE WITH FLASK_SQLAlchemy: https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/
+SQLAlchemy create_all() does not create tables: https://stackoverflow.com/questions/20744277/sqlalchemy-create-all-does-not-create-tables
+
+04/07/2020
+JAVASCRIPT - run scripts on client side (.json)
+
+HTML can run javascipt code when run by using the <script> tag
+This can allow the HTML code to change while on the same HTML page
+
+Ways to define js variables: 1) var - can access variables within a function, from outside of the function 2) let - only defines the variable within {} 3) const - a variable that cannnot be modified
+
+Data Attributes: you can assign additional attributes to objects by including data-xxxx=xxxx
+DOM = Document Object Model: Treating a webpage as an object and making modifications to the object client-side using querySelector and script
+
+EXAMPLE:
+document.querySelector(...).onsubmit - () =>
+
+Ajax:
+1) HTML Page for form input
+2) Form input is received as a DOM variable in js
+3) Upon receiving the input, query a API based on the input
+4) Return the relevant data from the API
+5) Update the variable in js and send it as an update to the HTML page
+
+Socket.IO - allows client and server side to communicate dynamically in real time
+1) Connect to socket through js
+2) Web socket can now trigger events
+3) You can emit data to other sockets and said sockets can process the data emitted and further emit them to other sockets (no refreshing is required - each input received or output sent results in an update) 
+#saving inputs/outputs in your server side operations allows the data to be called upon or referred to when the browser is reopened
+
+
+05/07/2020
+
+Single-Page Apps 
+HMTL5 History - Change the URL even though the webpage is actually the same (pushState)
+onpopstate = pressing the back button or forward button
+
+Window attributes
+in js you can extract the details of the window the user is currently viewing
+this allows you to trigger events when the user scrolls to a certain point in the page
+hide lets you hide elements 
+
+CSS Animation
+animation is basically changing the properties of an element over time
+animation-name: insert function with start and end state
+animation-duration: how long does the transition take
+animation-fill-mode: forward or backward
+
+Play state of the animation can be set to paused or running through js
+
+SCALABLE VECTOR GRAPHICS (svg files)
+getting whatever drawings you want onto a page
+
+D3: HTML library for plotting graphical elements 
+
+19/07/2020
+Django - A more powerful Flask which makes it easier to set up a web app
+Django creates files for you to serve as the foundation of the web app
+Django project contains multiple apps - each serving different functions
+Routes are linked to functions through two different files
+
+Migrations
+Django auto-generates SQL code to migrate (this could also mean create) databases into a new database (with different columns etc.)
+Django uses 'context dictionaries' to pass content from a database to a html page
+
+namespacing - creating directories so that files with the same name can exist 
+
+admin app - lets you change the database through a webpage!! it is customizable, allowing you to put some constraints on the inputs for the database 
+
+logging in - Django has log-in functions straight in the web app that lets admins and users log in
+
+Django allows you to define the relationship between tables and it will proceed to generate SQL tables that allow the relationship to work 
+
+01/08/2020
+MORE DJANGO
+You can add features to the admin file (StackedInLine, FilterHorizontal etc), lets the admin perform more pages on the Django admin interface
+
+TESTING
+1) Write a program that inputs stuff into the function and tests the function accordingly
+2) Run a series of lines that test the function and maybe output a notification if an exception occurs
+3) assert - an in-built function that when asserting if a function is true - and a false is triggered, throws an exception
+4) unittest - a library that lets you set up a series of tests (has stuff like asserttrue and assertfalse) - throws out exceptions for any errors that occur.
+5) Django has a test file as well - this is built on unittest, you include tests into the the model, you have the advantage of not modifying the original database when running the tests
+	i) you can try to go to different pages and see if you get a successful status code as part of the tests
+6) Selenium allows you to test javascript code by using a web driver to open the browser, running the javascript code and accessing elements in the javascript and doing stuff to them 
+
+Continuous Integration and Continuous Delivery 
+Travis - a CI tool which supports by running tests automatically every time code is pushed to github
+When you push code to GitHub, Github will notify Travis and Travis will pull code and run tests automatically
+Need to set up a configuration file using YAML - based on keys and values
+
+Virtual Machines VS Containers
+DOCKERS = CONTAINERS = A WAY TO ENSURE WEB APPS RUN THE SAME ACROSS DIFFERENT PLATFORMS
+Containerization ditches the Operating System - it just uses whichever OS the user is using - reduces loading speed and memory requirements while keeping consistency
+Docker ensures that the Apps and Bins/Libs can work on all OS
+Dockers install libraries through a file that specifies what libraries are required, it also states what programs are required to run the application
+docker-compose.yml  - the file which lets the docker know what to use, what to run, what to install, what image to use (postgres - link to database)
+
+04/08/2020
+Python and Flask
+First, make sure you install a copy of Python. For this course, you should be using Python version 3.6 or higher.
+You’ll also need to install pip. If you downloaded Python from Python’s website, you likely already have pip installed (you can check by running pip in a terminal window). If you don’t have it installed, be sure to install it before moving on!
+To try running your first Flask application:
+
+Download the project1 distribution directory from https://cdn.cs50.net/web/2020/x/projects/1/project1.zip and unzip it.
+In a terminal window, navigate into your project1 directory.
+Run pip3 install -r requirements.txt in your terminal window to make sure that all of the necessary Python packages (Flask and SQLAlchemy, for instance) are installed.
+Set the environment variable FLASK_APP to be application.py. On a Mac or on Linux, the command to do this is export FLASK_APP=application.py. On Windows, the command is instead set FLASK_APP=application.py. You may optionally want to set the environment variable FLASK_DEBUG to 1, which will activate Flask’s debugger and will automatically reload your web application whenever you save a change to a file.
+Set the environment variable DATABASE_URL to be the URI of your database, which you should be able to see from the credentials page on Heroku.
+Run flask run to start up your Flask application.
+
+07/08/2020
+RELEASE PRODUCTION VS CONTINUOUS INTEGRATION
+Git branching is a form of continuous integration
+clone the master repository (fork), create a branch, edit file, add it to staging area, commit it, push it to the forked copy of the repository
+TRAVIS is part of the master repository and is now in the clone, it can be run to do the testing on the modified clone
+
+Feature control - adding logic to parts of the code to say: IF the feature is released, then consider a part of the code active
+Feature toggle - release a feature for specific groups of people
+
+By using Hubot and a chat tool, you can publish the git commands you are running on the chat tool so other people can see what you are doing through git
+Slack can also link to your github and give similar notifications
+
+Travis CI
+Automated Tests: ASSERT TRUTHS ON THE SYSTEM AND CHECK IF THE SYSTEM'S OUTPUT MATCHES. EDIT SYSTEM UNTILIT DOES
+Function Tests: UNIT TEST, COMPONENT TEST, INTEGRATION TEST, END2END
+
+SCALABILITY
+Computation is calculated in Hertz - it is the metric used to quantify a server's capacity
+Benchmarking - load test a server
+Vertical Scaling - increasing server capacity (memory)
+Load balancing - determining how to deploy users to a particular server (but load balancing takes comutational power as well)
+-random choice
+-round robin
+-fewest connections
+
+Session-Aware Load Balance
+-stick sessions - keep sessions stored so when people exit and return their data is still present
+-sessions in database - storing it in all databases OR storing it in a set of databases and retrieve the info from those databases each time the data is required
+-client side sessions - cookies, information is stored on the client side, cookies can be used to determine which server a client goes to
+
+DATABASE (stored data) VS SERVER (live service)
+
+Autoscaling - cloud computing where servers are assigned from the cloud based on need
+
+Servers are linked to databases
+
+Databases can be partitioned - to make things easier to find when databases get too big
+
+Vertical partitioning 
+-split the columns (this reduces the number of rows in each database)
+
+Horizontal partitioning
+-split the rows (some rows belong to some sub-classification)
+-weakness: need to change both all tables each time you make an edit, need to cross check data between tables, if you need to remerge the data or query all the databases its slower
+
+Storing data in two databases allows queries to be run simultaneously 
+
+Database replication is a common solution for querying efficiency but it may be hard to sync all databases
+
+Single-Primary Replication (only good for reading, not so good for writing)
+
+UPDATE------------------>----------------------->
+DATABASE1 		DATABASE2 		DATABASE3
+WRITE/READ		READ			READ
+
+Multi-Primary Replication (must have rules for updating across multiple databases to deconflict index errors etc. 2 people register at the same time)
+
+<-UPDATE->		<-UPDATE->		<-UPDATE->
+DATABASE1 		DATABASE2 		DATABASE3
+WRITE/READ		WRITE/READ		WRITE/READ
+
+Client Side Caching
+Keeping certain pages in the cache and the client loads the page from his cache
+Typically you keep an ETag in the cache and it checks at the server side whether the Etag has changed, then decides whether to load from the server side or the client side
+
+Server Side Caching
+Server stores a typically large set of data that is frequently requested in the cache and pulls it out as set from the cache as required (saves query time because the cache is so focussed) 
+
+
+
+
+
